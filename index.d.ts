@@ -1,22 +1,22 @@
-export class BluetoothManager {
-  EVENT_DEVICE_ALREADY_PAIRED: any;
-  EVENT_DEVICE_DISCOVER_DONE: any;
-  EVENT_DEVICE_FOUND: any;
-  EVENT_CONNECTION_LOST: any;
-  EVENT_UNABLE_CONNECT: any;
-  EVENT_CONNECTED: any;
-  EVENT_BLUETOOTH_NOT_SUPPORT: any;
-  isBluetoothEnabled: () => Promise<boolean>;
-  enableBluetooth: () => Promise<any>;
-  disableBluetooth: () => Promise<any>;
-  scanDevices: () => Promise<any[]>;
-  connect: (address: any) => Promise<any>;
+export namespace BluetoothManager {
+  export const EVENT_DEVICE_ALREADY_PAIRED: any;
+  export const EVENT_DEVICE_DISCOVER_DONE: any;
+  export const EVENT_DEVICE_FOUND: any;
+  export const EVENT_CONNECTION_LOST: any;
+  export const EVENT_UNABLE_CONNECT: any;
+  export const EVENT_CONNECTED: any;
+  export const EVENT_BLUETOOTH_NOT_SUPPORT: any;
+  export function isBluetoothEnabled(): Promise<boolean>;
+  export function enableBluetooth(): Promise<any>;
+  export function disableBluetooth(): Promise<any>;
+  export function scanDevices(): Promise<any[]>;
+  export function connect(address: any): Promise<any>;
 }
-export class BluetoothTscPrinter {
-  DIRECTION: { FORWARD: 0 | 1; BACKWARD: 0 | 1 };
-  TEAR: "ON" | "OFF";
-  SOUND: 0 | 1;
-  FONTTYPE: {
+export namespace BluetoothTscPrinter {
+  export const DIRECTION: { FORWARD: 0 | 1; BACKWARD: 0 | 1 };
+  export const TEAR: "ON" | "OFF";
+  export const SOUND: 0 | 1;
+  export const FONTTYPE: {
     FONT_1: "1";
     FONT_2: "2";
     FONT_3: "3";
@@ -29,13 +29,13 @@ export class BluetoothTscPrinter {
     TRADITIONAL_CHINESE: "TST24.BF2";
     KOREAN: "K";
   };
-  ROTATION: {
+  export const ROTATION: {
     ROTATION_0: 0;
     ROTATION_90: 90;
     ROTATION_180: 180;
     ROTATION_270: 270;
   };
-  FONTMUL: {
+  export const FONTMUL: {
     MUL_1: 1;
     MUL_2: 2;
     MUL_3: 3;
@@ -47,14 +47,14 @@ export class BluetoothTscPrinter {
     MUL_9: 9;
     MUL_10: 10;
   };
-  EEC: {
+  export const EEC: {
     LEVEL_L: "L";
     LEVEL_M: "M";
     LEVEL_Q: "Q";
     LEVEL_H: "H";
   };
-  BITMAP_MODE: { OVERWRITE: 0; OR: 1; XOR: 2 };
-  BARCODETYPE: {
+  export const BITMAP_MODE: { OVERWRITE: 0; OR: 1; XOR: 2 };
+  export const BARCODETYPE: {
     CODE128;
     CODE128M;
     EAN128;
@@ -85,36 +85,39 @@ export class BluetoothTscPrinter {
     ITF14;
     EAN14;
   };
-  ALIGN: { LEFT: number; CENTER: number; RIGHT: number };
-  ERROR_CORRECTION: { L; M; Q; H };
-  printLabel: (options: any) => Promise<any>;
-  printerInit: (i?: number) => Promise<any>;
-  printAndFeed: (i: number) => Promise<any>;
-  printerLeftSpace: (i: number) => Promise<any>;
-  printerLineSpace: (i: number) => Promise<any>;
-  printerUnderLine: (i: number) => Promise<any>;
-  printerAlign: (i: number) => Promise<any>;
-  setWidth: (i: number) => Promise<any>;
-  printText: (text: string, options: any) => Promise<any>;
-  printColumn: (cw: any[], ca: any[], options: any) => Promise<any>;
-  printPic: (base64: string, options: any) => Promise<any>;
-  rotate: () => Promise<any>;
-  setBlob: (i: number) => Promise<any>;
-  printQRCode: (
+  export const ALIGN: { LEFT: number; CENTER: number; RIGHT: number };
+  export const ERROR_CORRECTION: { L; M; Q; H };
+  export function printLabel(options: any): Promise<any>;
+  export function printerInit(i?: number): Promise<any>;
+  export function printAndFeed(i: number): Promise<any>;
+  export function printerLeftSpace(i: number): Promise<any>;
+  export function printerLineSpace(i: number): Promise<any>;
+  export function printerUnderLine(i: number): Promise<any>;
+  export function printerAlign(i: number): Promise<any>;
+  export function setWidth(i: number): Promise<any>;
+  export function printText(text: string, options: any): Promise<any>;
+  export function printColumn(cw: any[], ca: any[], options: any): Promise<any>;
+  export function printPic(base64: string, options: any): Promise<any>;
+  export function rotate(): Promise<any>;
+  export function setBlob(i: number): Promise<any>;
+  export function printQRCode(
     content: string,
     size: number,
     correctionLevel: number,
     leftPadding: number
-  ) => Promise<any>;
-  printBarCode: (
+  ): Promise<any>;
+  export function printBarCode(
     content: string,
     nType: number,
     nWidthX: number,
     nHeight: number,
     nHriFontType: number,
     nHriFontPosition: number
-  ) => Promise<any>;
+  ): Promise<any>;
 }
-export class DeviceEventEmitter {
-  addListener: (eventType: any, callback: (rsp: any) => void) => void;
+export namespace DeviceEventEmitter {
+  export function addListener(
+    eventType: any,
+    callback: (rsp: any) => void
+  ): void;
 }
