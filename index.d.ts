@@ -1,4 +1,4 @@
-export namespace BluetoothManager {
+export module BluetoothManager {
   export const EVENT_DEVICE_ALREADY_PAIRED: any;
   export const EVENT_DEVICE_DISCOVER_DONE: any;
   export const EVENT_DEVICE_FOUND: any;
@@ -9,10 +9,10 @@ export namespace BluetoothManager {
   export function isBluetoothEnabled(): Promise<boolean>;
   export function enableBluetooth(): Promise<any>;
   export function disableBluetooth(): Promise<any>;
-  export function scanDevices(): Promise<any[]>;
+  export function scanDevices(): Promise<any>;
   export function connect(address: any): Promise<any>;
 }
-export namespace BluetoothTscPrinter {
+export module BluetoothTscPrinter {
   export const DIRECTION: { FORWARD: 0 | 1; BACKWARD: 0 | 1 };
   export const TEAR: "ON" | "OFF";
   export const SOUND: 0 | 1;
@@ -88,6 +88,10 @@ export namespace BluetoothTscPrinter {
   export const ALIGN: { LEFT: number; CENTER: number; RIGHT: number };
   export const ERROR_CORRECTION: { L; M; Q; H };
   export function printLabel(options: any): Promise<any>;
+}
+export module BluetoothEscposPrinter {
+  export const ALIGN: { LEFT: number; CENTER: number; RIGHT: number };
+  export const ERROR_CORRECTION: { L; M; Q; H };
   export function printerInit(i?: number): Promise<any>;
   export function printAndFeed(i: number): Promise<any>;
   export function printerLeftSpace(i: number): Promise<any>;
@@ -114,10 +118,4 @@ export namespace BluetoothTscPrinter {
     nHriFontType: number,
     nHriFontPosition: number
   ): Promise<any>;
-}
-export namespace DeviceEventEmitter {
-  export function addListener(
-    eventType: any,
-    callback: (rsp: any) => void
-  ): void;
 }
