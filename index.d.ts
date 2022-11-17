@@ -6,11 +6,11 @@ export class BluetoothManager {
   EVENT_UNABLE_CONNECT: any;
   EVENT_CONNECTED: any;
   EVENT_BLUETOOTH_NOT_SUPPORT: any;
-  isBluetoothEnabled(): Promise<boolean>;
-  enableBluetooth(): Promise<any>;
-  disableBluetooth(): Promise<any>;
-  scanDevices(): Promise<any[]>;
-  connect(address: any): Promise<any>;
+  isBluetoothEnabled: () => Promise<boolean>;
+  enableBluetooth: () => Promise<any>;
+  disableBluetooth: () => Promise<any>;
+  scanDevices: () => Promise<any[]>;
+  connect: (address: any) => Promise<any>;
 }
 export class BluetoothTscPrinter {
   DIRECTION: { FORWARD: 0 | 1; BACKWARD: 0 | 1 };
@@ -87,34 +87,34 @@ export class BluetoothTscPrinter {
   };
   ALIGN: { LEFT: number; CENTER: number; RIGHT: number };
   ERROR_CORRECTION: { L; M; Q; H };
-  printLabel(options: any): Promise<any>;
-  printerInit(i?: number): Promise<any>;
-  printAndFeed(i: number): Promise<any>;
-  printerLeftSpace(i: number): Promise<any>;
-  printerLineSpace(i: number): Promise<any>;
-  printerUnderLine(i: number): Promise<any>;
-  printerAlign(i: number): Promise<any>;
-  setWidth(i: number): Promise<any>;
-  printText(text: string, options: any): Promise<any>;
-  printColumn(cw: any[], ca: any[], options: any): Promise<any>;
-  printPic(base64: string, options: any): Promise<any>;
-  rotate(): Promise<any>;
-  setBlob(i: number): Promise<any>;
-  printQRCode(
+  printLabel: (options: any) => Promise<any>;
+  printerInit: (i?: number) => Promise<any>;
+  printAndFeed: (i: number) => Promise<any>;
+  printerLeftSpace: (i: number) => Promise<any>;
+  printerLineSpace: (i: number) => Promise<any>;
+  printerUnderLine: (i: number) => Promise<any>;
+  printerAlign: (i: number) => Promise<any>;
+  setWidth: (i: number) => Promise<any>;
+  printText: (text: string, options: any) => Promise<any>;
+  printColumn: (cw: any[], ca: any[], options: any) => Promise<any>;
+  printPic: (base64: string, options: any) => Promise<any>;
+  rotate: () => Promise<any>;
+  setBlob: (i: number) => Promise<any>;
+  printQRCode: (
     content: string,
     size: number,
     correctionLevel: number,
     leftPadding: number
-  ): Promise<any>;
-  printBarCode(
+  ) => Promise<any>;
+  printBarCode: (
     content: string,
     nType: number,
     nWidthX: number,
     nHeight: number,
     nHriFontType: number,
     nHriFontPosition: number
-  ): Promise<any>;
+  ) => Promise<any>;
 }
 export class DeviceEventEmitter {
-  addListener(eventType: any, callback: (rsp: any) => void);
+  addListener: (eventType: any, callback: (rsp: any) => void) => void;
 }
