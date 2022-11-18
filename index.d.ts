@@ -99,9 +99,9 @@ export module BluetoothEscposPrinter {
   export function printerUnderLine(i: number): Promise<any>;
   export function printerAlign(i: number): Promise<any>;
   export function setWidth(i: number): Promise<any>;
-  export function printText(text: string, options: any): Promise<any>;
-  export function printColumn(cw: any[], ca: any[], options: any): Promise<any>;
-  export function printPic(base64: string, options: any): Promise<any>;
+  export function printText(text: string, options?: any): Promise<any>;
+  export function printColumn(cw: any[], ca: any[], ct: string[], options?: any): Promise<any>;
+  export function printPic(base64: string, options?: any): Promise<any>;
   export function rotate(): Promise<any>;
   export function setBlob(i: number): Promise<any>;
   export function printQRCode(
