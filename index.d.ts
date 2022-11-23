@@ -3,13 +3,18 @@ import { NativeModules } from "react-native";
 
 declare module "react-native" {
   interface NativeModulesStatic {
-    BluetoothManager: BluetoothManager;
+    BluetoothManager: IBluetoothManager;
+    BluetoothTscPrinter: IBluetoothTscPrinter;
+    BluetoothEscposPrinter: IBluetoothEscposPrinter;
   }
 }
 
-export const BluetoothManager = NativeModules.BluetoothManager;
+const { BluetoothManager, BluetoothEscposPrinter, BluetoothTscPrinter } =
+  NativeModules;
 
-interface BluetoothManager {
+export { BluetoothManager, BluetoothEscposPrinter, BluetoothTscPrinter };
+
+interface IBluetoothManager {
   EVENT_DEVICE_ALREADY_PAIRED: any;
   EVENT_DEVICE_DISCOVER_DONE: any;
   EVENT_DEVICE_FOUND: any;
@@ -25,11 +30,11 @@ interface BluetoothManager {
   addListener: (event: string) => void;
   removeListeners: (count: number) => void;
 }
-export module BluetoothTscPrinter {
-  export const DIRECTION: { FORWARD: 0 | 1; BACKWARD: 0 | 1 };
-  export const TEAR: "ON" | "OFF";
-  export const SOUND: 0 | 1;
-  export const FONTTYPE: {
+export interface IBluetoothTscPrinter {
+  DIRECTION: { FORWARD: 0 | 1; BACKWARD: 0 | 1 };
+  TEAR: "ON" | "OFF";
+  SOUND: 0 | 1;
+  FONTTYPE: {
     FONT_1: "1";
     FONT_2: "2";
     FONT_3: "3";
@@ -42,13 +47,13 @@ export module BluetoothTscPrinter {
     TRADITIONAL_CHINESE: "TST24.BF2";
     KOREAN: "K";
   };
-  export const ROTATION: {
+  ROTATION: {
     ROTATION_0: 0;
     ROTATION_90: 90;
     ROTATION_180: 180;
     ROTATION_270: 270;
   };
-  export const FONTMUL: {
+  FONTMUL: {
     MUL_1: 1;
     MUL_2: 2;
     MUL_3: 3;
@@ -60,14 +65,14 @@ export module BluetoothTscPrinter {
     MUL_9: 9;
     MUL_10: 10;
   };
-  export const EEC: {
+  EEC: {
     LEVEL_L: "L";
     LEVEL_M: "M";
     LEVEL_Q: "Q";
     LEVEL_H: "H";
   };
-  export const BITMAP_MODE: { OVERWRITE: 0; OR: 1; XOR: 2 };
-  export const BARCODETYPE: {
+  BITMAP_MODE: { OVERWRITE: 0; OR: 1; XOR: 2 };
+  BARCODETYPE: {
     CODE128;
     CODE128M;
     EAN128;
@@ -98,37 +103,42 @@ export module BluetoothTscPrinter {
     ITF14;
     EAN14;
   };
-  export const ALIGN: { LEFT: number; CENTER: number; RIGHT: number };
-  export const ERROR_CORRECTION: { L; M; Q; H };
-  export function printLabel(options: any): Promise<any>;
+  ALIGN: { LEFT: number; CENTER: number; RIGHT: number };
+  ERROR_CORRECTION: { L; M; Q; H };
+  printLabel: (options: any) => Promise<any>;
 }
-export module BluetoothEscposPrinter {
-  export const ALIGN: { LEFT: number; CENTER: number; RIGHT: number };
-  export const ERROR_CORRECTION: { L; M; Q; H };
-  export function printerInit(i?: number): Promise<any>;
-  export function printAndFeed(i: number): Promise<any>;
-  export function printerLeftSpace(i: number): Promise<any>;
-  export function printerLineSpace(i: number): Promise<any>;
-  export function printerUnderLine(i: number): Promise<any>;
-  export function printerAlign(i: number): Promise<any>;
-  export function setWidth(i: number): Promise<any>;
-  export function printText(text: string, options?: any): Promise<any>;
-  export function printColumn(cw: any[], ca: any[], ct: string[], options?: any): Promise<any>;
-  export function printPic(base64: string, options?: any): Promise<any>;
-  export function rotate(): Promise<any>;
-  export function setBlob(i: number): Promise<any>;
-  export function printQRCode(
+export interface IBluetoothEscposPrinter {
+  ALIGN: { LEFT: number; CENTER: number; RIGHT: number };
+  ERROR_CORRECTION: { L; M; Q; H };
+  printerInit: (i?: number) => Promise<any>;
+  printAndFeed: (i: number) => Promise<any>;
+  printerLeftSpace: (i: number) => Promise<any>;
+  printerLineSpace: (i: number) => Promise<any>;
+  printerUnderLine: (i: number) => Promise<any>;
+  printerAlign: (i: number) => Promise<any>;
+  setWidth: (i: number) => Promise<any>;
+  printText: (text: string, options?: any) => Promise<any>;
+  printColumn: (
+    cw: any[],
+    ca: any[],
+    ct: string[],
+    options?: any
+  ) => Promise<any>;
+  printPic: (base64: string, options?: any) => Promise<any>;
+  rotate: () => Promise<any>;
+  setBlob: (i: number) => Promise<any>;
+  printQRCode: (
     content: string,
     size: number,
     correctionLevel: number,
     leftPadding: number
-  ): Promise<any>;
-  export function printBarCode(
+  ) => Promise<any>;
+  printBarCode: (
     content: string,
     nType: number,
     nWidthX: number,
     nHeight: number,
     nHriFontType: number,
     nHriFontPosition: number
-  ): Promise<any>;
+  ) => Promise<any>;
 }
