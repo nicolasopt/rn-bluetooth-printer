@@ -1,16 +1,29 @@
-export module BluetoothManager {
-  export const EVENT_DEVICE_ALREADY_PAIRED: any;
-  export const EVENT_DEVICE_DISCOVER_DONE: any;
-  export const EVENT_DEVICE_FOUND: any;
-  export const EVENT_CONNECTION_LOST: any;
-  export const EVENT_UNABLE_CONNECT: any;
-  export const EVENT_CONNECTED: any;
-  export const EVENT_BLUETOOTH_NOT_SUPPORT: any;
-  export function isBluetoothEnabled(): Promise<boolean>;
-  export function enableBluetooth(): Promise<any>;
-  export function disableBluetooth(): Promise<any>;
-  export function scanDevices(): Promise<any>;
-  export function connect(address: any): Promise<any>;
+import "react-native";
+import { NativeModules } from "react-native";
+
+declare module "react-native" {
+  interface NativeModulesStatic {
+    BluetoothManager: BluetoothManager;
+  }
+}
+
+export const BluetoothManager = NativeModules.BluetoothManager;
+
+interface BluetoothManager {
+  EVENT_DEVICE_ALREADY_PAIRED: any;
+  EVENT_DEVICE_DISCOVER_DONE: any;
+  EVENT_DEVICE_FOUND: any;
+  EVENT_CONNECTION_LOST: any;
+  EVENT_UNABLE_CONNECT: any;
+  EVENT_CONNECTED: any;
+  EVENT_BLUETOOTH_NOT_SUPPORT: any;
+  isBluetoothEnabled: () => Promise<boolean>;
+  enableBluetooth: () => Promise<any>;
+  disableBluetooth: () => Promise<any>;
+  scanDevices: () => Promise<any>;
+  connect: (address: any) => Promise<any>;
+  addListener: (event: string) => void;
+  removeListeners: (count: number) => void;
 }
 export module BluetoothTscPrinter {
   export const DIRECTION: { FORWARD: 0 | 1; BACKWARD: 0 | 1 };
